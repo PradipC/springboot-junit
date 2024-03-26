@@ -1,4 +1,4 @@
-package com.tendai.service;
+package com.pc.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tendai.model.User;
-import com.tendai.repository.UserRepository;
+import com.pc.model.User;
+import com.pc.repository.UserRepository;
 
 @Service
 public class UserService {
@@ -20,8 +20,10 @@ public class UserService {
 	public User createUser(User user) {
 		
 		User createdUser =userRepositoryObject.save(user);
-		
-		return createdUser;
+		if(createdUser != null){
+			return createdUser;
+		}
+		throw new RuntimeException("User creation failed");
 	}
 	
 	
@@ -68,16 +70,5 @@ public class UserService {
 		
 		return updatedUser;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
