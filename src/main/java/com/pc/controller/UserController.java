@@ -72,14 +72,31 @@ public class UserController {
 
 		return new ResponseEntity<>( updatedUser , HttpStatus.OK );
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+	@GetMapping("/getByEmail/{email}")
+	public ResponseEntity<User> getUserByEmail(@PathVariable("email") String email){
+		User user = userServiceObject.getUserByEmail(email);
+		if(user != null) {
+			return new ResponseEntity<>(user, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+
+	@GetMapping("/getByLastName/{lastName}")
+	public ResponseEntity<List<User>> getUsersByLastName(@PathVariable("lastName") String lastName){
+		List<User> users = userServiceObject.getUsersByLastName(lastName);
+		if(!users.isEmpty()) {
+			return new ResponseEntity<>(users, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+
+
+
+
+
+
+
+
 }

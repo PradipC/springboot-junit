@@ -70,5 +70,19 @@ public class UserService {
 		
 		return updatedUser;
 	}
-	
+
+
+	/* get specific user based on email */
+	public User getUserByEmail(String email) {
+		return userRepositoryObject.findByEmail(email);
+	}
+
+	/* get users based on last name */
+	public List<User> getUsersByLastName(String lastName) {
+		return userRepositoryObject.findByLastName(lastName);
+	}
+
+
+
+
 }
